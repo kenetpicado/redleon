@@ -24,4 +24,9 @@ class Cliente extends Model
     ];
 
     public $timestamps = false;
+
+    public function servicio()
+    {
+        return $this->hasOne(Servicio::class);
+    }
 }

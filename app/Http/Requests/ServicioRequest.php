@@ -26,7 +26,8 @@ class ServicioRequest extends FormRequest
         return [
             'inicio' => 'required',
             'tipo' => 'required',
-            'periodo' => 'required|in:3-MESES,6-MESES,12-MESES',
+            'operador' => 'required',
+            'periodo' => 'required',
             'fecha_pago' => 'required',
             'monto' => 'required',
             'equipo_instalado' => 'required',

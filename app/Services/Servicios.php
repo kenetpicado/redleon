@@ -10,6 +10,7 @@ class Servicios
     public function getTipo()
     {
         $tipos = [];
+        array_push($tipos, new Items('STREAMING'));
         array_push($tipos, new Items('CABLE'));
         array_push($tipos, new Items('INTERNET-HFC'));
         array_push($tipos, new Items('INTERNET-FIBRA'));
@@ -19,6 +20,7 @@ class Servicios
     public function getPeriodo()
     {
         $periodos = [];
+        array_push($periodos, new Items('1-MES'));
         array_push($periodos, new Items('3-MESES'));
         array_push($periodos, new Items('6-MESES'));
         array_push($periodos, new Items('12-MESES'));
@@ -37,6 +39,9 @@ class Servicios
         $date =  Carbon::create($fecha);
 
         switch ($value) {
+            case '1-MES':
+                $new = $date->addMonth(1)->format('Y-m-d');
+                break;
             case '3-MESES':
                 $new = $date->addMonth(3)->format('Y-m-d');
                 break;

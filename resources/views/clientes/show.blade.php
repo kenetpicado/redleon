@@ -13,6 +13,7 @@
             </div>
             <x-input name='inicio' label="Inicio servicio" type="date"></x-input>
             <x-select-0 name="tipo" :items="$tipos"></x-select-0>
+            <x-input name="operador"></x-input>
             <x-select-0 name="periodo" :items="$periodos"></x-select-0>
             <x-input name='fecha_pago' label="Inicio periodo (Fecha de pago)" type="date"></x-input>
             <x-input name='monto'></x-input>

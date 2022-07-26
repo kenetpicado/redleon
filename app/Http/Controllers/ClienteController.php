@@ -5,13 +5,14 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ClienteRequest;
 use App\Models\Cliente;
 use App\Services\Servicios;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class ClienteController extends Controller
 {
     public function index()
     {
-        $clientes = DB::table('clientes')->get();
+        $clientes = Cliente::all();
         return view('clientes.index', compact('clientes'));
     }
 
@@ -33,6 +34,11 @@ class ClienteController extends Controller
 
     public function show(Cliente $cliente)
     {
+        $cliente->load('servicio');
+
+        if ($cliente->servicio)
+            return view('servicios.pagar', compact('cliente'));
+
         $tipos = (new Servicios)->getTipo();
         $periodos = (new Servicios)->getPeriodo();
         return view('clientes.show', compact('cliente', 'tipos', 'periodos'));

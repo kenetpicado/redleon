@@ -17,6 +17,7 @@ class CreateServiciosTable extends Migration
             $table->id();
             $table->date('inicio');
             $table->string('tipo', 30);
+            $table->string('operador', 30);
             $table->string('periodo', 20);
             $table->date('fecha_pago');
             $table->date('proximo_pago');

@@ -11,6 +11,7 @@
             @method('PUT')
             <x-input name='inicio' label="Inicio servicio" type="date" :val="$servicio->inicio"></x-input>
             <x-select-0 name="tipo" :items="$tipos" :old="$servicio->tipo"></x-select-0>
+            <x-input name="operador"  :val="$servicio->operador"></x-input>
             <x-select-0 name="periodo" :items="$periodos" :old="$servicio->periodo"></x-select-0>
             <x-input name='fecha_pago' label="Inicio periodo (Fecha de pago)" type="date" :val="$servicio->fecha_pago"></x-input>
             <div class="mb-3">

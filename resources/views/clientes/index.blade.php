@@ -17,17 +17,20 @@
         <tbody>
             @foreach ($clientes as $cliente)
                 <tr>
-                    <td>{{ $cliente->nombre }}</td>
+                    <td>
+                        {{ $cliente->nombre }}
+                    </td>
                     <td>{{ $cliente->direccion }}</td>
                     <td>{{ $cliente->telefono }}</td>
                     <td>{{ $cliente->cedula }}</td>
                     <td>
                         <a href="{{ route('clientes.show', $cliente->id) }}" class="btn btn-sm btn-primary rounded-3">
                             Pagar</a>
-                        </td>
+                    </td>
                     <td>
                         <a href="{{ route('clientes.edit', $cliente->id) }}"
-                            class="btn btn-sm btn-secondary rounded-3">Editar</a></td>
+                            class="btn btn-sm btn-secondary rounded-3">Editar</a>
+                    </td>
                 </tr>
             @endforeach
         </tbody>

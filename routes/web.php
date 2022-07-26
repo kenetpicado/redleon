@@ -26,6 +26,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('clientes', ClienteController::class);
     Route::resource('servicios', ServicioController::class);
     Route::resource('user', UserController::class);
+    Route::put('volver-a-pagar/{servicio}', [ServicioController::class, 'pay'])->name('pay');
 });
 
 Auth::routes();

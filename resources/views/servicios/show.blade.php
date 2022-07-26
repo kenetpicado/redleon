@@ -72,6 +72,10 @@
                     <td>{{ $servicio->tipo }}</td>
                 </tr>
                 <tr>
+                    <td>Operador: </td>
+                    <td>{{ $servicio->operador }}</td>
+                </tr>
+                <tr>
                     <td>Periodo: </td>
                     <td>{{ $servicio->periodo }}</td>
                 </tr>

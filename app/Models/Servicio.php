@@ -14,6 +14,7 @@ class Servicio extends Model
     protected $fillable = [
         'inicio',
         'tipo',
+        'operador',
         'periodo',
         'fecha_pago',
         'proximo_pago',
@@ -27,6 +28,7 @@ class Servicio extends Model
     protected $casts = [
         'equipo_instalado' => Upper::class,
         'mac' => Upper::class,
+        'operador' => Upper::class,
     ];
 
     public $timestamps = false;
