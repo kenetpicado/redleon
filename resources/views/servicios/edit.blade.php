@@ -14,10 +14,7 @@
             <x-input name="operador"  :val="$servicio->operador"></x-input>
             <x-select-0 name="periodo" :items="$periodos" :old="$servicio->periodo"></x-select-0>
             <x-input name='fecha_pago' label="Inicio periodo (Fecha de pago)" type="date" :val="$servicio->fecha_pago"></x-input>
-            <div class="mb-3">
-                <label class="form-label">Fin periodo (Proximo pago)</label>
-                <input type="date" disabled class="form-control text-muted" value="{{$servicio->proximo_pago}}">
-            </div>
+            <x-input name='proximo_pago' label="Fin periodo (Proximo pago)" type="date" :val="$servicio->proximo_pago"></x-input>
             <x-input name='monto' :val="$servicio->monto"></x-input>
             <x-input name='equipo_instalado' label="Equipo Instalado" :val="$servicio->equipo_instalado"></x-input>
             <x-input name='mac' :val="$servicio->mac"></x-input>

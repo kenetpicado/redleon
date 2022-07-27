@@ -32,7 +32,6 @@ class ServicioController extends Controller
 
     public function store(ServicioRequest $request)
     {
-        $request = (new Servicios)->proximo_pago($request);
         Servicio::create($request->all());
 
         Registro::create([
@@ -45,7 +44,6 @@ class ServicioController extends Controller
 
     public function update(ServicioRequest $request, Servicio $servicio)
     {
-        $request = (new Servicios)->proximo_pago($request);
         $servicio->update($request->all());
         return redirect()->route('servicios.index')->with('success', 'Servicio actualizado correctamente');
     }
@@ -58,7 +56,6 @@ class ServicioController extends Controller
             'periodo' => 'required',
         ]);
 
-        $request = (new Servicios)->proximo_pago($request);
         $servicio->update($request->all());
 
         Registro::create([
@@ -66,6 +63,6 @@ class ServicioController extends Controller
             'cliente_id' => $servicio->cliente_id,
         ]);
 
-        return redirect()->route('clientes.index')->with('success', 'Pago relizado correctamente');
+        return redirect()->route('clientes.index')->with('success', 'Pago realizado correctamente');
     }
 }

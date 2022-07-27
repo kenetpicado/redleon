@@ -16,6 +16,7 @@
             <x-input name="operador"></x-input>
             <x-select-0 name="periodo" :items="$periodos"></x-select-0>
             <x-input name='fecha_pago' label="Inicio periodo (Fecha de pago)" type="date"></x-input>
+            <x-input name='proximo_pago' label="Fin periodo (Proximo pago)" type="date"></x-input>
             <x-input name='monto'></x-input>
             <x-input name='equipo_instalado' label="Equipo Instalado"></x-input>
             <x-input name='mac'></x-input>

@@ -35,12 +35,12 @@ class ClienteController extends Controller
     public function show(Cliente $cliente)
     {
         $cliente->load('servicio');
+        $periodos = (new Servicios)->getPeriodo();
 
         if ($cliente->servicio)
-            return view('servicios.pagar', compact('cliente'));
+            return view('servicios.pagar', compact('cliente', 'periodos'));
 
         $tipos = (new Servicios)->getTipo();
-        $periodos = (new Servicios)->getPeriodo();
         return view('clientes.show', compact('cliente', 'tipos', 'periodos'));
     }
 

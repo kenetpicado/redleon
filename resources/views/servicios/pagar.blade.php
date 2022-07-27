@@ -9,9 +9,10 @@
         <form action="{{ route('pay', $cliente->servicio->id) }}" method="post">
             @csrf
             @method('PUT')
-            <x-input name='fecha_pago' label="Inicio periodo (Fecha de pago)" type="date" :val="$cliente->servicio->proximo_pago"></x-input>
+            <x-select-0 name="periodo" :items="$periodos" :old="$cliente->servicio->periodo"></x-select-0>
+            <x-input name='fecha_pago' label="Inicio periodo (Fecha de pago)" type="date" :val="$cliente->servicio->fecha_pago"></x-input>
+            <x-input name='proximo_pago' label="Fin periodo (Proximo pago)" type="date" :val="$cliente->servicio->proximo_pago"></x-input>
             <x-input name='monto' :val="$cliente->servicio->monto"></x-input>
-            <input type="hidden" name="periodo" value="{{ $cliente->servicio->periodo }}">
             <button type="submit" class="btn btn-secondary rounded-3">Pagar</button>
         </form>
     </x-main>
