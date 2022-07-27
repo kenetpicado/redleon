@@ -18,6 +18,7 @@
             <x-input name='monto' :val="$servicio->monto"></x-input>
             <x-input name='equipo_instalado' label="Equipo Instalado" :val="$servicio->equipo_instalado"></x-input>
             <x-input name='mac' :val="$servicio->mac"></x-input>
+            <x-input name='velocidad' :val="$servicio->velocidad"></x-input>
             <button type="submit" class="btn btn-secondary rounded-3">Actualizar</button>
         </form>
     </x-main>
