@@ -14,6 +14,8 @@
             <x-input name='telefono' :val="$cliente->telefono"></x-input>
             <x-input name='cedula' :val="$cliente->cedula"></x-input>
             <x-input name='nota' :val="$cliente->nota"></x-input>
+            <x-select-0 name="cobrador_id" :items="$cobradores" text="Asignar cobrador" :old="$cliente->cobrador_id"></x-select-0>
+
             <button type="submit" class="btn btn-secondary rounded-3 float-end">Guardar</button>
         </form>
     </x-main>

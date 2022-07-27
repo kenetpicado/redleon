@@ -15,6 +15,8 @@ class CreateCobradorsTable extends Migration
     {
         Schema::create('cobradors', function (Blueprint $table) {
             $table->id();
+            $table->string('nombre', 50);
+            $table->string('usuario', 50);
             $table->timestamps();
         });
     }

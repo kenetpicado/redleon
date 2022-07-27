@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ClienteRequest;
 use App\Models\Cliente;
+use App\Models\Cobrador;
 use App\Services\Servicios;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -12,13 +13,17 @@ class ClienteController extends Controller
 {
     public function index()
     {
-        $clientes = Cliente::all();
+        $clientes = auth()->user()->rol == 'cobrador'
+            ? Cliente::where('cobrador_id', auth()->user()->sub_id)->get()
+            : Cliente::all();
+
         return view('clientes.index', compact('clientes'));
     }
 
     public function create()
     {
-        return view('clientes.create');
+        $cobradores = Cobrador::all();
+        return view('clientes.create', compact('cobradores'));
     }
 
     public function store(ClienteRequest $request)
@@ -29,7 +34,8 @@ class ClienteController extends Controller
 
     public function edit(Cliente $cliente)
     {
-        return view('clientes.edit', compact('cliente'));
+        $cobradores = Cobrador::all();
+        return view('clientes.edit', compact('cliente', 'cobradores'));
     }
 
     public function show(Cliente $cliente)

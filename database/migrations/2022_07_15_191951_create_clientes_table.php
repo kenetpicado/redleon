@@ -20,6 +20,9 @@ class CreateClientesTable extends Migration
             $table->string('telefono', 8);
             $table->string('nota', 100);
             $table->string('cedula', 16);
+
+            $table->unsignedBigInteger('cobrador_id')->nullable();
+            $table->foreign('cobrador_id')->references('id')->on('cobradors')->onDelete('set null');
         });
     }
 

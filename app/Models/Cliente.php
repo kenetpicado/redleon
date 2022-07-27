@@ -16,6 +16,7 @@ class Cliente extends Model
         'telefono',
         'nota',
         'cedula',
+        'cobrador_id'
     ];
 
     protected $casts = [

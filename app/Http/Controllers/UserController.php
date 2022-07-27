@@ -15,7 +15,20 @@ class UserController extends Controller
 
     public function update(Request $request, User $user)
     {
-        $user->update($request->all());
+        $user->update($request->only(['name', 'email']));
+        return redirect()->route('home')->with('success', 'Usuario actualizado correctamente');
+    }
+
+    public function password(Request $request, User $user)
+    {
+        $request->validate([
+            'password' => 'required|min:6|confirmed'
+        ]);
+
+        $user->update([
+            'password' => bcrypt($request->password),
+        ]);
+        
         return redirect()->route('home')->with('success', 'Usuario actualizado correctamente');
     }
 }

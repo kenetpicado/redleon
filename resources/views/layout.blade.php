@@ -25,6 +25,10 @@
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <x-itembar when="clientes" text="Clientes" route="clientes.index"></x-itembar>
                     <x-itembar when="servicios" text="Servicios" route="servicios.index"></x-itembar>
+
+                    @if (auth()->user()->rol == 'admin')
+                        <x-itembar when="cobradors" text="Cobradores" route="cobradors.index"></x-itembar>
+                    @endif
                 </ul>
 
                 <ul class="navbar-nav ms-auto">

@@ -14,4 +14,15 @@
             <button type="submit" class="btn btn-secondary rounded-3 float-end">Actualizar</button>
         </form>
     </x-main>
+
+    <x-main>
+        <hr>
+        <form action="{{ route('password', auth()->user()->id) }}" method="post">
+            @csrf
+            @method('PUT')
+            <x-input name='password' label="Nueva contraseña" type="password"></x-input>
+            <x-input name='password_confirmation' label="Confirmar contraseña" type="password"></x-input>
+            <button type="submit" class="btn btn-secondary rounded-3 float-end">Cambiar contraseña</button>
+        </form>
+    </x-main>
 @endsection

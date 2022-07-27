@@ -35,6 +35,18 @@ class Servicio extends Model
 
     public static function index()
     {
+        if (auth()->user()->rol == 'cobrador') {
+            return DB::table('servicios')
+                ->where('clientes.cobrador_id', auth()->user()->sub_id)
+                ->select([
+                    'servicios.*',
+                    'clientes.nombre as nombre',
+                ])
+                ->join('clientes', 'servicios.cliente_id', '=', 'clientes.id')
+                ->orderBy('proximo_pago')
+                ->get();
+        }
+
         return DB::table('servicios')
             ->select([
                 'servicios.*',
