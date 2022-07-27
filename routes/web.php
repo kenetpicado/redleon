@@ -3,6 +3,7 @@
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\CobradorController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\IngresoController;
 use App\Http\Controllers\RegistroController;
 use App\Http\Controllers\ReportesController;
 use App\Http\Controllers\ServicioController;
@@ -31,6 +32,8 @@ Route::middleware(['auth'])->group(function () {
     Route::put('volver-a-pagar/{servicio}', [ServicioController::class, 'pay'])->name('pay');
     Route::get('registros/clientes/{id}', [RegistroController::class, 'index'])->name('registros.index');
     Route::get('cobrador-clientes/{id}', [CobradorController::class, 'clientes'])->name('cobradors.clientes');
+    Route::get('ingresos', [IngresoController::class, 'index'])->name('ingresos.index');
+    Route::get('detalles/cliente/{id}', [ClienteController::class, 'detalles'])->name('clientes.detalles');
 
 });
 

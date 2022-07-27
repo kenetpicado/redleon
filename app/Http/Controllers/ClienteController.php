@@ -20,6 +20,12 @@ class ClienteController extends Controller
         return view('clientes.index', compact('clientes'));
     }
 
+    public function detalles($cliente_id)
+    {
+        $cliente = Cliente::find($cliente_id);
+        return view('clientes.detalles', compact('cliente'));
+    }
+
     public function create()
     {
         $cobradores = Cobrador::all();
@@ -41,8 +47,11 @@ class ClienteController extends Controller
     public function show(Cliente $cliente)
     {
         $cliente->load('servicio');
-        $periodos = (new Servicios)->getPeriodo();
 
+        if (auth()->user()->rol == 'cobrador' && !$cliente->servicio)
+            return redirect()->route('clientes.index')->with('success', 'Error, no se ha creado el servicio');
+
+        $periodos = (new Servicios)->getPeriodo();
         if ($cliente->servicio)
             return view('servicios.pagar', compact('cliente', 'periodos'));
 

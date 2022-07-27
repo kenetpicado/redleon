@@ -16,6 +16,7 @@ class CreateRegistrosTable extends Migration
         Schema::create('registros', function (Blueprint $table) {
             $table->id();
             $table->string('message', 100);
+            $table->float('monto');
 
             $table->unsignedBigInteger('cliente_id');
             $table->foreign('cliente_id')
@@ -23,7 +24,7 @@ class CreateRegistrosTable extends Migration
                 ->on('clientes')
                 ->onDelete('cascade');
 
-            $table->timestamps();
+            $table->date('created_at')->default(date('Y-m-d'));
         });
     }
 

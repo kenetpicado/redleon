@@ -121,7 +121,7 @@
                                     <h2 class="h1 mb-0 me-4">{{ $servicios->ingreso }}</h2>
                                 </div>
                                 <div>
-                                    <h4>Ingreso</h4>
+                                    <h4>Ingresos</h4>
                                     <p class="mb-0">{{ $servicios->mes }}</p>
                                 </div>
                             </div>

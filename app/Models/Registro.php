@@ -9,8 +9,12 @@ class Registro extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
+
     protected $fillable = [
         'message',
+        'monto',
         'cliente_id',
+        'created_at',
     ];
 }

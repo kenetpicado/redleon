@@ -32,11 +32,13 @@ class ServicioController extends Controller
 
     public function store(ServicioRequest $request)
     {
-        Servicio::create($request->all());
+        $servicio = Servicio::create($request->all());
 
         Registro::create([
-            'message' => 'Se ha realizado un pago por $' . $request->monto,
-            'cliente_id' => $request->cliente_id,
+            'message' => $servicio->tipo . ' - ' . $servicio->operador,
+            'monto' => $servicio->monto,
+            'cliente_id' => $servicio->cliente_id,
+            'created_at' => now()->format('Y-m-d'),
         ]);
 
         return redirect()->route('clientes.index')->with('success', 'Servicio guardado correctamente');
@@ -59,8 +61,10 @@ class ServicioController extends Controller
         $servicio->update($request->all());
 
         Registro::create([
-            'message' => 'Se ha realizado un pago por $' . $request->monto,
+            'message' => $servicio->tipo . ' - ' . $servicio->operador,
+            'monto' => $request->monto,
             'cliente_id' => $servicio->cliente_id,
+            'created_at' => now()->format('Y-m-d'),
         ]);
 
         return redirect()->route('clientes.index')->with('success', 'Pago realizado correctamente');
