@@ -26,6 +26,7 @@ class ClienteRequest extends FormRequest
         return [
             //
             'nombre' => 'required|max:50',
+            'nota' => 'required|max:100',
             'direccion' => 'required|max:80',
             'telefono' => 'required|numeric|digits:8',
             'cedula' => 'required|alpha_dash|min:16|max:16',

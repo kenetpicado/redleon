@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\RegistroController;
 use App\Http\Controllers\ReportesController;
 use App\Http\Controllers\ServicioController;
 use App\Http\Controllers\UserController;
@@ -27,6 +28,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('servicios', ServicioController::class);
     Route::resource('user', UserController::class);
     Route::put('volver-a-pagar/{servicio}', [ServicioController::class, 'pay'])->name('pay');
+    Route::get('registros/clientes/{id}', [RegistroController::class, 'index'])->name('registros.index');
 });
 
 Auth::routes();

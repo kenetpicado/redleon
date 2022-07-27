@@ -6,6 +6,7 @@ use App\Models\Servicio;
 use App\Services\Servicios;
 use App\Http\Requests\ServicioRequest;
 use App\Models\Cliente;
+use App\Models\Registro;
 use Illuminate\Http\Request;
 
 class ServicioController extends Controller
@@ -33,6 +34,12 @@ class ServicioController extends Controller
     {
         $request = (new Servicios)->proximo_pago($request);
         Servicio::create($request->all());
+
+        Registro::create([
+            'message' => 'Se ha realizado un pago por $' . $request->monto,
+            'cliente_id' => $request->cliente_id,
+        ]);
+
         return redirect()->route('clientes.index')->with('success', 'Servicio guardado correctamente');
     }
 
@@ -53,6 +60,12 @@ class ServicioController extends Controller
 
         $request = (new Servicios)->proximo_pago($request);
         $servicio->update($request->all());
+
+        Registro::create([
+            'message' => 'Se ha realizado un pago por $' . $request->monto,
+            'cliente_id' => $servicio->cliente_id,
+        ]);
+
         return redirect()->route('clientes.index')->with('success', 'Pago relizado correctamente');
     }
 }

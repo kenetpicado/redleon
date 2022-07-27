@@ -14,6 +14,7 @@ class Cliente extends Model
         'nombre',
         'direccion',
         'telefono',
+        'nota',
         'cedula',
     ];
 
@@ -21,6 +22,7 @@ class Cliente extends Model
         'nombre' => Upper::class,
         'direccion' => Upper::class,
         'cedula' => Upper::class,
+        'nota' => Upper::class,
     ];
 
     public $timestamps = false;

@@ -69,7 +69,7 @@
                 </div>
             @endif
 
-            <div class="card border-0 mb-4" style="border-radius: 20px">
+            <div class="card border-0 mb-4 rounded-3">
                 @yield('main')
             </div>
         </div>

@@ -11,25 +11,31 @@
             <th>Dirección</th>
             <th>Telefono</th>
             <th>Cedula</th>
-            <th>Servicio</th>
-            <th>Editar</th>
+            <th>Nota</th>
+            <th>Opciones</th>
         </x-slot>
         <tbody>
             @foreach ($clientes as $cliente)
                 <tr>
-                    <td>
-                        {{ $cliente->nombre }}
-                    </td>
+                    <td>{{ $cliente->nombre }}</td>
                     <td>{{ $cliente->direccion }}</td>
                     <td>{{ $cliente->telefono }}</td>
                     <td>{{ $cliente->cedula }}</td>
+                    <td>{{ $cliente->nota }}</td>
                     <td>
-                        <a href="{{ route('clientes.show', $cliente->id) }}" class="btn btn-sm btn-primary rounded-3">
-                            Pagar</a>
-                    </td>
-                    <td>
-                        <a href="{{ route('clientes.edit', $cliente->id) }}"
-                            class="btn btn-sm btn-secondary rounded-3">Editar</a>
+                        <div class="dropdown">
+                            <a class="btn btn-secondary btn-sm dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Opciones
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <li><a class="dropdown-item" href="{{ route('clientes.show', $cliente->id) }}">Pagar</a></li>
+                                <li><a class="dropdown-item" href="{{ route('clientes.edit', $cliente->id) }}">Editar</a>
+                                </li>
+                                <li><a class="dropdown-item" href="{{ route('registros.index', $cliente->id) }}">Registros</a>
+                                </li>
+                            </ul>
+                        </div>
                     </td>
                 </tr>
             @endforeach

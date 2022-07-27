@@ -13,6 +13,7 @@
             <x-input name='direccion' :val="$cliente->direccion"></x-input>
             <x-input name='telefono' :val="$cliente->telefono"></x-input>
             <x-input name='cedula' :val="$cliente->cedula"></x-input>
+            <x-input name='nota' :val="$cliente->nota"></x-input>
             <button type="submit" class="btn btn-secondary rounded-3 float-end">Guardar</button>
         </form>
     </x-main>
