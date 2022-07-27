@@ -38,7 +38,7 @@ class ServicioController extends Controller
             'message' => $servicio->tipo . ' - ' . $servicio->operador,
             'monto' => $servicio->monto,
             'cliente_id' => $servicio->cliente_id,
-            'created_at' => now()->format('Y-m-d'),
+            'created_at' => $servicio->fecha_pago,
         ]);
 
         return redirect()->route('clientes.index')->with('success', 'Servicio guardado correctamente');
@@ -64,7 +64,7 @@ class ServicioController extends Controller
             'message' => $servicio->tipo . ' - ' . $servicio->operador,
             'monto' => $request->monto,
             'cliente_id' => $servicio->cliente_id,
-            'created_at' => now()->format('Y-m-d'),
+            'created_at' => $servicio->fecha_pago,
         ]);
 
         return redirect()->route('clientes.index')->with('success', 'Pago realizado correctamente');

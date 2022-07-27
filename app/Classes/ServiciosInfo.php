@@ -39,6 +39,7 @@ class ServiciosInfo
         $this->cable = $servicios->where('tipo', 'CABLE')->count();
         $this->hfc = $servicios->where('tipo', 'INTERNET-HFC')->count();
         $this->fibra = $servicios->where('tipo', 'INTERNET-FIBRA')->count();
+        $this->streaming = $servicios->where('tipo', 'STREAMING')->count();
         $this->ingreso = $registros->sum('monto');
         $this->mes = $this->current_month();
     }

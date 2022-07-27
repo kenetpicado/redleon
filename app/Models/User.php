@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'rol',
+        'sub_id',
         'password',
     ];
 
