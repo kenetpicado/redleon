@@ -8,11 +8,15 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('DataTables/datatables.min.css') }}" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
     <title>{{ config('app.name') }} - @yield('title')</title>
+    <link rel="icon" type="image/x-icon" href="{{ asset('img/logo.png') }}">
 </head>
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-white static-top shadow-sm mb-3">
         <div class="container">
+            <a class="navbar-brand" href="/">
+                <img src="{{ asset('img/logo.png') }}" width="30" height="auto">
+            </a>
             <a class="navbar-brand fw-bolder" href="/">{{ config('app.name') }}</a>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"

@@ -10,7 +10,11 @@
             <table class="table table-borderless table-sm" width="100%" cellspacing="0">
                 <th>
                     <tr class="text-uppercase text-center fw-bolder">
-                        <td colspan="2">RED LEON</td>
+                        <td colspan="2">
+                            <img src="{{asset('img/logo.png')}}" alt="" width="15%" height="auto">
+                            <br>
+                            RED LEON
+                        </td>
                     </tr>
                 </th>
                 <th>
