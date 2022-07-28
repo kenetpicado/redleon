@@ -78,11 +78,13 @@ class Servicio extends Model
             ->where('servicios.id', $servicio_id)
             ->select([
                 'servicios.*',
+                'cobradors.nombre as nombre_cobrador',
                 'clientes.nombre as nombre',
                 'clientes.direccion as direccion',
                 'clientes.telefono as telefono',
             ])
             ->join('clientes', 'servicios.cliente_id', '=', 'clientes.id')
+            ->join('cobradors', 'clientes.cobrador_id', '=', 'cobradors.id')
             ->first();
     }
 }

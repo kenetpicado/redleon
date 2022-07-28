@@ -56,8 +56,14 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>Monto: </td>
-                    <td>$ {{ $servicio->monto }}</td>
+                    <td>Cobrador: </td>
+                    <td>
+                        {{ $servicio->nombre_cobrador }}
+                    </td>
+                </tr>
+                <tr>
+                    <td> <strong>Monto: </strong> </td>
+                    <td class="fw-bolder">$ {{ $servicio->monto }}</td>
                 </tr>
             </table>
         </div>

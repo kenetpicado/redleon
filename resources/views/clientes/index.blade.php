@@ -28,7 +28,7 @@
                     <td><a class="btn btn-sm btn-primary" href="{{ route('clientes.show', $cliente->id) }}">Pagar</a></td>
                     @if (auth()->user()->rol == 'admin')
                         <td>
-                            <div class="btn-group dropstart">
+                            <div class="btn-group">
                                 <a class="btn btn-secondary btn-sm dropdown-toggle" href="#" role="button"
                                     id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                                     Opciones

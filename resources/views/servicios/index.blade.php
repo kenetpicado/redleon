@@ -39,7 +39,7 @@
                         @endif
                     </td>
                     <td>
-                        <div class="btn-group dropstart">
+                        <div class="btn-group">
                             <a class="btn btn-secondary btn-sm dropdown-toggle" href="#" role="button"
                                 id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                                 Opciones
