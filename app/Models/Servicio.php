@@ -71,4 +71,18 @@ class Servicio extends Model
             ->join('clientes', 'servicios.cliente_id', '=', 'clientes.id')
             ->first();
     }
+
+    public static function recibo($servicio_id)
+    {
+        return DB::table('servicios')
+            ->where('servicios.id', $servicio_id)
+            ->select([
+                'servicios.*',
+                'clientes.nombre as nombre',
+                'clientes.direccion as direccion',
+                'clientes.telefono as telefono',
+            ])
+            ->join('clientes', 'servicios.cliente_id', '=', 'clientes.id')
+            ->first();
+    }
 }

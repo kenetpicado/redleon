@@ -12,7 +12,6 @@
             <th>Periodo</th>
             <th>Inicio - Fin</th>
             <th>Estado</th>
-            <th>Actualizar</th>
             <th>Detalles</th>
         </x-slot>
         <tbody>
@@ -40,12 +39,27 @@
                         @endif
                     </td>
                     <td>
-                        <a href="{{ route('servicios.edit', $servicio->id) }}"
-                            class="btn btn-sm btn-primary rounded-3">Actualizar</a>
-                    </td>
-                    <td>
-                        <a href="{{ route('servicios.show', $servicio->id) }}"
-                            class="btn btn-sm btn-secondary rounded-3">Detalles</a>
+                        <div class="btn-group dropstart">
+                            <a class="btn btn-secondary btn-sm dropdown-toggle" href="#" role="button"
+                                id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                Opciones
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <li>
+                                    <a class="dropdown-item"
+                                        href="{{ route('servicios.recibo', $servicio->id) }}">Recibo</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item"
+                                        href="{{ route('servicios.show', $servicio->id) }}">Detalles</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item"
+                                        href="{{ route('servicios.edit', $servicio->id) }}">Editar</a>
+                                </li>
+                                
+                            </ul>
+                        </div>
                     </td>
                 </tr>
             @endforeach

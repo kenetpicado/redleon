@@ -41,7 +41,7 @@ class ServicioController extends Controller
             'created_at' => $servicio->fecha_pago,
         ]);
 
-        return redirect()->route('clientes.index')->with('success', 'Servicio guardado correctamente');
+        return redirect()->route('servicios.recibo', $servicio->id);
     }
 
     public function update(ServicioRequest $request, Servicio $servicio)
@@ -67,6 +67,12 @@ class ServicioController extends Controller
             'created_at' => $servicio->fecha_pago,
         ]);
 
-        return redirect()->route('clientes.index')->with('success', 'Pago realizado correctamente');
+        return redirect()->route('servicios.recibo', $servicio->id);
+    }
+
+    public function recibo($servicio_id)
+    {
+        $servicio = Servicio::recibo($servicio_id);
+        return view('servicios.recibo', compact('servicio'));
     }
 }
