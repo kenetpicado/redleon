@@ -11,22 +11,18 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
 Route::middleware(['auth'])->group(function () {
-    Route::get('/', [HomeController::class, 'index'])->name('home');
-    Route::resource('clientes', ClienteController::class);
+    Route::get('/', [HomeController::class, 'index'])
+        ->name('home');
+
+    Route::resource('clientes', ClienteController::class)
+        ->except('create');
+
     Route::resource('servicios', ServicioController::class);
-    Route::resource('cobradors', CobradorController::class);
+
+    Route::resource('cobradors', CobradorController::class)
+        ->except('create');
+
     Route::resource('user', UserController::class);
     Route::put('password/{user}', [UserController::class, 'password'])->name('password');
     Route::put('volver-a-pagar/{servicio}', [ServicioController::class, 'pay'])->name('pay');
@@ -35,8 +31,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('ingresos', [IngresoController::class, 'index'])->name('ingresos.index');
     Route::get('detalles/cliente/{id}', [ClienteController::class, 'detalles'])->name('clientes.detalles');
     Route::get('recibo/cliente/{id}', [ServicioController::class, 'recibo'])->name('servicios.recibo');
-
 });
 
 Auth::routes();
-

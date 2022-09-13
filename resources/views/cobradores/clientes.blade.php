@@ -3,7 +3,7 @@
 @section('title', 'Clientes')
 
 @section('main')
-    <x-header-0>todos los Clientes</x-header-0>
+    <x-header-0>Todos los Clientes</x-header-0>
 
     <x-table>
         <x-slot name="title">

@@ -16,6 +16,7 @@ class IngresoController extends Controller
                 'clientes.nombre as nombre'
             ])
             ->join('clientes', 'registros.cliente_id', '=', 'clientes.id')
+            ->latest('id')
             ->get();
 
         return view('ingresos.index', compact('ingresos'));

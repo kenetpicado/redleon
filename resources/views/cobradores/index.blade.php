@@ -3,15 +3,27 @@
 @section('title', 'Cobradores')
 
 @section('main')
-    <x-header-1 route="cobradors.create">todos los cobradores</x-header-1>
+    <x-header-1>todos los cobradores</x-header-1>
+
+    <x-modal title="Agregar - Cobrador">
+        <form action="{{ route('cobradors.store') }}" method="post">
+            @csrf
+            <div class="modal-body">
+                <x-input name='nombre'></x-input>
+                <x-input name='usuario'></x-input>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-secondary float-end">Guardar</button>
+            </div>
+        </form>
+    </x-modal>
 
     <x-table>
         <x-slot name="title">
             <th>Nombre</th>
             <th>Usuario</th>
-            <th>Ver clientes</th>
+            <th>Clientes</th>
             <th>Editar</th>
-            <th>Eliminar</th>
         </x-slot>
         <tbody>
             @foreach ($cobradores as $cobrador)
@@ -19,17 +31,10 @@
                     <td>{{ $cobrador->nombre }}</td>
                     <td>{{ $cobrador->usuario }}</td>
                     <td>
-                        <a class="btn btn-sm btn-primary" href="{{ route('cobradors.clientes', $cobrador->id) }}">Ver clientes</a>
+                        <a class="btn btn-sm btn-primary" href="{{ route('cobradors.clientes', $cobrador->id) }}">Clientes</a>
                     </td>
                     <td>
-                        <a class="btn btn-sm btn-primary" href="{{ route('cobradors.edit', $cobrador->id) }}">Editar</a>
-                    </td>
-                    <td>
-                        <form action="{{ route('cobradors.destroy', $cobrador->id) }}" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
-                        </form>
+                        <a class="btn btn-sm btn-secondary" href="{{ route('cobradors.edit', $cobrador->id) }}">Editar</a>
                     </td>
                 </tr>
             @endforeach

@@ -3,7 +3,7 @@
 @section('title', 'Inicio')
 
 @section('main')
-<x-header-0>Informacion general</x-header-0>
+    <x-header-0>Informacion general</x-header-0>
     <div class="card-body">
 
         <div class="row">

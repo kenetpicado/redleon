@@ -35,26 +35,16 @@ class Servicio extends Model
 
     public static function index()
     {
-        if (auth()->user()->rol == 'cobrador') {
-            return DB::table('servicios')
-                ->where('clientes.cobrador_id', auth()->user()->sub_id)
-                ->select([
-                    'servicios.*',
-                    'clientes.nombre as nombre',
-                ])
-                ->join('clientes', 'servicios.cliente_id', '=', 'clientes.id')
-                ->orderBy('proximo_pago')
-                ->get();
-        }
-
         return DB::table('servicios')
-            ->select([
-                'servicios.*',
-                'clientes.nombre as nombre',
-            ])
+            ->when(auth()->user()->rol == 'cobrador', function ($q) {
+                $q->where('clientes.cobrador_id', auth()->user()->sub_id);
+            })
             ->join('clientes', 'servicios.cliente_id', '=', 'clientes.id')
             ->orderBy('proximo_pago')
-            ->get();
+            ->get([
+                'servicios.*',
+                'clientes.nombre as nombre',
+            ]);
     }
 
     public static function show($servicio_id)
@@ -84,7 +74,7 @@ class Servicio extends Model
                 'clientes.telefono as telefono',
             ])
             ->join('clientes', 'servicios.cliente_id', '=', 'clientes.id')
-            ->join('cobradors', 'clientes.cobrador_id', '=', 'cobradors.id')
+            ->leftjoin('cobradors', 'clientes.cobrador_id', '=', 'cobradors.id')
             ->first();
     }
 }

@@ -19,7 +19,18 @@
             <x-input name='equipo_instalado' label="Equipo Instalado" :val="$servicio->equipo_instalado"></x-input>
             <x-input name='mac' :val="$servicio->mac"></x-input>
             <x-input name='velocidad' :val="$servicio->velocidad"></x-input>
-            <button type="submit" class="btn btn-secondary rounded-3">Actualizar</button>
+            <button type="submit" class="btn btn-secondary float-end">Actualizar</button>
+        </form>
+    </x-main>
+    <x-main>
+        <form action="{{ route('servicios.destroy', $servicio->id) }}" method="POST">
+            @csrf
+            @method('DELETE')
+            <h4>Eliminar</h4>
+            <p class="text-danger">
+                Esta acción no se puede deshacer.
+            </p>
+            <button type="submit" class="btn btn-secondary float-end">Eliminar</button>
         </form>
     </x-main>
 @endsection

@@ -4,11 +4,10 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/x-icon" href="{{ asset('img/SP.png') }}">
+    <link rel="icon" type="image/x-icon" href="{{ asset('img/logo.png') }}">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ config('app.name') }} - Login</title>
     <link href="css/app.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
 </head>
 
 <body class="bg-light">
@@ -20,7 +19,8 @@
                     <div class="card-body p-0">
                         <div class="p-5">
                             <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4">{{ config('app.name') }}</h1>
+                                <img src="{{ asset('img/logo.png') }}" alt="" width="20%"  height="auto" class="mb-2">
+                                <h1 class="h4 text-gray-900 mb-4 fw-bolder">{{ config('app.name') }}</h1>
                             </div>
                             <form method="POST" action="{{ route('login') }}">
                                 @csrf

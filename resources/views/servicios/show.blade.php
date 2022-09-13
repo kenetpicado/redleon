@@ -3,12 +3,9 @@
 @section('title', 'Detalles servicio')
 
 @section('main')
-    <x-header-2 text="Detalles">
-        <a class="dropdown-item">Eliminar</a>
-    </x-header-2>
+    <x-header-0>Detalles</x-header-2>
 
-    <x-main>
-        <div class="table-responsive">
+        <x-main>
             <table class="table table-borderless" width="100%" cellspacing="0">
                 <tr>
                     <td colspan="2">
@@ -108,6 +105,5 @@
                     <td>{{ $servicio->velocidad }}</td>
                 </tr>
             </table>
-        </div>
-    </x-main>
-@endsection
+        </x-main>
+    @endsection

@@ -11,7 +11,7 @@
             @method('PUT')
             <x-input name='name' label="Nombre" :val="$user->name"></x-input>
             <x-input name='email' label="Usuario" :val="$user->email"></x-input>
-            <button type="submit" class="btn btn-secondary rounded-3 float-end">Actualizar</button>
+            <button type="submit" class="btn btn-secondary float-end">Actualizar</button>
         </form>
     </x-main>
 
@@ -22,7 +22,7 @@
             @method('PUT')
             <x-input name='password' label="Nueva contraseña" type="password"></x-input>
             <x-input name='password_confirmation' label="Confirmar contraseña" type="password"></x-input>
-            <button type="submit" class="btn btn-secondary rounded-3 float-end">Cambiar contraseña</button>
+            <button type="submit" class="btn btn-secondary float-end">Actualizar</button>
         </form>
     </x-main>
 @endsection

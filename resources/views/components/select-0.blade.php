@@ -4,7 +4,7 @@
     <label class="form-label">{{ ucfirst($text) }}</label>
     <select name="{{ $name }}" class="form-control @error($name) is-invalid @enderror" autofocus>
 
-        <option selected disabled value="">Seleccionar</option>
+        <option selected value="">Ninguno</option>
 
         @foreach ($items as $item)
             <option value="{{ $item->id }}"

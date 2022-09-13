@@ -9,7 +9,12 @@ use App\Models\User;
 use Illuminate\Http\Request;
 
 class CobradorController extends Controller
-{
+{    
+    /**
+     * Ver todos los cobradores
+     *
+     * @return view
+     */
     public function index()
     {
         $cobradores = Cobrador::all();
@@ -20,11 +25,6 @@ class CobradorController extends Controller
     {
         $clientes = Cliente::where('cobrador_id', $cobrador_id)->get();
         return view('cobradores.clientes', compact('clientes'));
-    }
-
-    public function create()
-    {
-        return view('cobradores.create');
     }
 
     public function edit(Cobrador $cobrador)

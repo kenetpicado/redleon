@@ -9,6 +9,15 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
     <title>{{ config('app.name') }} - @yield('title')</title>
     <link rel="icon" type="image/x-icon" href="{{ asset('img/logo.png') }}">
+    <style>
+        .btn {
+            width: 150px;
+        }
+
+        .btn-sm {
+            width: 80px;
+        }
+    </style>
 </head>
 
 <body>
@@ -38,7 +47,7 @@
 
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item dropdown">
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                        <a id="navbarDropdown" class="nav-link text-primary" href="#" role="button"
                             data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             {{ Auth::user()->name ?? '' }}
                         </a>
@@ -78,22 +87,39 @@
                 </div>
             @endif
 
-            <div class="card border-0 rounded-3 py-2">
+            <div class="card">
                 @yield('main')
             </div>
         </div>
     </div>
     <script src="{{ asset('js/app.js') }}"></script>
     <script type="text/javascript" src="{{ asset('DataTables/datatables.min.js') }}"></script>
+
+    @if ($errors->any())
+        <script>
+            $(document).ready(function() {
+                $("#modalCreate").modal('show');
+            });
+        </script>
+    @endif
+
     <script>
         $(document).ready(function() {
             $('#dataTable').DataTable({
-                "ordering": false,
+                ordering: false,
                 responsive: true,
-                "pageLength": 50,
+                pageLength: 50,
                 bLengthChange: false,
+                language: {
+                    paginate: {
+                        first: "<",
+                        previous: "<",
+                        next: ">",
+                        last: ">"
+                    }
+                }
             });
-        });
+        })
     </script>
 </body>
 
