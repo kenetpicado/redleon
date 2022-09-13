@@ -111,10 +111,12 @@
                 pageLength: 50,
                 bLengthChange: false,
                 language: {
+                    search: "_INPUT_",
+                    searchPlaceholder: "Buscar",
                     paginate: {
                         first: "<",
-                        previous: "<",
-                        next: ">",
+                        previous: "‹",
+                        next: "›",
                         last: ">"
                     }
                 }
