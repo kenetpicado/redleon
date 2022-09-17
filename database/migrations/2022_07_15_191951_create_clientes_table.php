@@ -18,7 +18,6 @@ class CreateClientesTable extends Migration
             $table->string('nombre', 50);
             $table->string('direccion', 80);
             $table->string('telefono', 8);
-            $table->string('nota', 100);
             $table->string('cedula', 16);
 
             $table->unsignedBigInteger('cobrador_id')->nullable();

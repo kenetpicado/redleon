@@ -24,12 +24,10 @@ class ClienteRequest extends FormRequest
     public function rules()
     {
         return [
-            //
-            'nombre' => 'required|max:50',
-            'nota' => 'required|max:100',
+            'nombre' => 'required|max:50|unique:clientes',
             'direccion' => 'required|max:80',
-            'telefono' => 'required|numeric|digits:8',
-            'cedula' => 'required|alpha_dash|min:16|max:16',
+            'telefono' => 'required|numeric|digits:8|unique:clientes',
+            'cedula' => 'required|alpha_dash|min:16|max:16|unique:clientes',
         ];
     }
 }

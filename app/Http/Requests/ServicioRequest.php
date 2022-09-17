@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class ServicioRequest extends FormRequest
 {
@@ -28,24 +29,13 @@ class ServicioRequest extends FormRequest
             'tipo' => 'required',
             'operador' => 'required',
             'periodo' => 'required',
-            'fecha_pago' => 'required',
-            'monto' => 'required',
+            'periodo_inicio' => 'required',
+            'periodo_fin' => 'required',
             'equipo_instalado' => 'required',
-            'mac' => 'required',
             'velocidad' => 'required',
-        ] +
-            ($this->isMethod('POST')
-                ? $this->store()
-                : $this->update());
-    }
-
-    protected function store()
-    {
-        return ['cliente_id' => 'required'];
-    }
-
-    protected function update()
-    {
-        return [];
+            'nota' => 'nullable|max:50',
+            'mac' => ['required', Rule::unique('servicios')->ignore($this->servicio_id)],
+            'cliente_id' => 'required',
+        ];
     }
 }

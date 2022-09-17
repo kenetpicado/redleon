@@ -19,12 +19,13 @@ class CreateServiciosTable extends Migration
             $table->string('tipo', 30);
             $table->string('operador', 30);
             $table->string('periodo', 20);
-            $table->date('fecha_pago');
-            $table->date('proximo_pago');
-            $table->float('monto');
+            $table->date('periodo_inicio');
+            $table->date('periodo_fin');
             $table->string('equipo_instalado', 50);
             $table->string('mac', 50);
             $table->string('velocidad', 50);
+            $table->string('nota', 50)->nullable();
+            $table->float('monto')->nullable();
 
             $table->unsignedBigInteger('cliente_id');
             $table->foreign('cliente_id')->references('id')->on('clientes')->onDelete('cascade');

@@ -2,13 +2,13 @@
 
 <div class="mb-3">
     <label class="form-label">{{ ucfirst($text) }}</label>
-    <select name="{{ $name }}" class="form-control @error($name) is-invalid @enderror" autofocus>
+    <select id="{{ $name }}" name="{{ $name }}" class="form-control @error($name) is-invalid @enderror"
+        autofocus>
 
         <option selected value="">Ninguno</option>
 
         @foreach ($items as $item)
-            <option value="{{ $item->id }}"
-                {{ old($name) == $item->id || $old == $item->id ? 'selected' : '' }}>
+            <option value="{{ $item->id }}" {{ old($name) == $item->id || $old == $item->id ? 'selected' : '' }}>
                 {{ $item->nombre }}
             </option>
         @endforeach

@@ -29,7 +29,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('registros/clientes/{id}', [RegistroController::class, 'index'])->name('registros.index');
     Route::get('cobrador-clientes/{id}', [CobradorController::class, 'clientes'])->name('cobradors.clientes');
     Route::get('ingresos', [IngresoController::class, 'index'])->name('ingresos.index');
-    Route::get('detalles/cliente/{id}', [ClienteController::class, 'detalles'])->name('clientes.detalles');
     Route::get('recibo/cliente/{id}', [ServicioController::class, 'recibo'])->name('servicios.recibo');
 });
 

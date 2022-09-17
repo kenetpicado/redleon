@@ -17,33 +17,33 @@ class ServicioController extends Controller
         return view('servicios.index', compact('servicios'));
     }
 
+    /* Pagar */
     public function edit(Servicio $servicio)
     {
-        $tipos = (new Servicios)->getTipo();
         $periodos = (new Servicios)->getPeriodo();
-        return view('servicios.edit', compact('servicio', 'tipos', 'periodos'));
+        return view('servicios.edit', compact('servicio', 'periodos'));
     }
 
+    /* Ver detalles */
     public function show($servicio_id)
     {
         $servicio = Servicio::show($servicio_id);
         return view('servicios.show', compact('servicio'));
     }
 
+    /* Crear servicio */
     public function store(ServicioRequest $request)
     {
-        $servicio = Servicio::create($request->all());
+        Servicio::updateOrCreate(
+            ['cliente_id' => $request->cliente_id],
+            $request->validated()
+        );
 
-        Registro::create([
-            'message' => $servicio->tipo . ' - ' . $servicio->operador,
-            'monto' => $servicio->monto,
-            'cliente_id' => $servicio->cliente_id,
-            'created_at' => $servicio->fecha_pago,
-        ]);
-
-        return redirect()->route('servicios.recibo', $servicio->id);
+        return redirect()->route('clientes.index')
+            ->with('success', 'Servicio registrado');
     }
 
+    /* Guardar pago */
     public function update(ServicioRequest $request, Servicio $servicio)
     {
         $servicio->update($request->all());

@@ -16,12 +16,13 @@ class Servicio extends Model
         'tipo',
         'operador',
         'periodo',
-        'fecha_pago',
-        'proximo_pago',
-        'monto',
+        'periodo_inicio',
+        'periodo_fin',
         'equipo_instalado',
         'mac',
         'velocidad',
+        'nota',
+        'monto',
         'cliente_id',
     ];
 
@@ -40,9 +41,11 @@ class Servicio extends Model
                 $q->where('clientes.cobrador_id', auth()->user()->sub_id);
             })
             ->join('clientes', 'servicios.cliente_id', '=', 'clientes.id')
-            ->orderBy('proximo_pago')
+            ->orderBy('periodo_fin')
             ->get([
-                'servicios.*',
+                'servicios.id',
+                'servicios.tipo',
+                'servicios.periodo_fin',
                 'clientes.nombre as nombre',
             ]);
     }

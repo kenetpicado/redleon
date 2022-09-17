@@ -14,7 +14,6 @@ class Cliente extends Model
         'nombre',
         'direccion',
         'telefono',
-        'nota',
         'cedula',
         'cobrador_id'
     ];
@@ -23,7 +22,6 @@ class Cliente extends Model
         'nombre' => Upper::class,
         'direccion' => Upper::class,
         'cedula' => Upper::class,
-        'nota' => Upper::class,
     ];
 
     public $timestamps = false;
@@ -31,5 +29,11 @@ class Cliente extends Model
     public function servicio()
     {
         return $this->hasOne(Servicio::class);
+    }
+
+    public static function index()
+    {
+        return Cliente::orderBy('nombre')
+            ->get(['id', 'nombre', 'direccion', 'telefono']);
     }
 }

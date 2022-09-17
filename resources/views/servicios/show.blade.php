@@ -6,32 +6,32 @@
     <x-header-0>Detalles</x-header-2>
 
         <x-main>
+            @if ($servicio->periodo_fin > date('Y-m-d'))
+                <div class="alert alert-success" role="alert">
+                    El servicio se encuentra activo.
+                </div>
+            @else
+                @if ($servicio->periodo_fin == date('Y-m-d'))
+                    <div class="alert alert-warning" role="alert">
+                        El nuevo pago deberia efectuarse hoy.
+                    </div>
+                @else
+                    <div class="alert alert-danger" role="alert">
+                        El nuevo pago se encuentra retrasado.
+                        @php
+                            $date2 = new DateTime($servicio->periodo_fin);
+                            $date1 = new DateTime(date('Y-m-d'));
+                            $diff = $date1->diff($date2);
+                            echo $diff->days . ' dias ';
+                        @endphp
+                    </div>
+                @endif
+            @endif
+
+            <a class="btn btn-secondary my-1" href="{{route('servicios.edit', $servicio->id)}}">Realizar pago</a>
+            <a class="btn btn-secondary my-1" href="{{route('servicios.recibo', $servicio->id)}}">Ver recibo</a>
+
             <table class="table table-borderless" width="100%" cellspacing="0">
-                <tr>
-                    <td colspan="2">
-                        @if ($servicio->proximo_pago > date('Y-m-d'))
-                            <div class="alert alert-success" role="alert">
-                                El servicio se encuentra activo.
-                            </div>
-                        @else
-                            @if ($servicio->proximo_pago == date('Y-m-d'))
-                                <div class="alert alert-warning" role="alert">
-                                    El nuevo pago deberia efectuarse hoy.
-                                </div>
-                            @else
-                                <div class="alert alert-danger" role="alert">
-                                    El nuevo pago se encuentra retrasado.
-                                    @php
-                                        $date2 = new DateTime($servicio->proximo_pago);
-                                        $date1 = new DateTime(date('Y-m-d'));
-                                        $diff = $date1->diff($date2);
-                                        echo $diff->days . ' dias ';
-                                    @endphp
-                                </div>
-                            @endif
-                        @endif
-                    </td>
-                </tr>
                 <th>
                     <tr class="text-uppercase small fw-bolder">
                         <td colspan="2">Información del Cliente</td>
@@ -77,20 +77,22 @@
                     <td>{{ $servicio->periodo }}</td>
                 </tr>
                 <tr>
-                    <td>Inicio periodo: </td>
+                    <td>Inicio del servicio: </td>
                     <td>
-                        {{ date('d-m-Y', strtotime($servicio->fecha_pago)) }}
+                        {{ date('d-m-Y', strtotime($servicio->periodo_inicio)) }}
                     </td>
                 </tr>
                 <tr>
-                    <td>Fin periodo: </td>
+                    <td>Fin del servicio: </td>
                     <td>
-                        {{ date('d-m-Y', strtotime($servicio->proximo_pago)) }}
+                        {{ date('d-m-Y', strtotime($servicio->periodo_fin)) }}
                     </td>
                 </tr>
                 <tr>
-                    <td>Monto: </td>
-                    <td>$ {{ $servicio->monto }}</td>
+                    <td>Monto</td>
+                    <td>
+                        {{ $servicio->monto ?? '-' }}
+                    </td>
                 </tr>
                 <tr>
                     <td>Equipo: </td>
