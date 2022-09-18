@@ -11,7 +11,6 @@
             <th>Dirección</th>
             <th>Telefono</th>
             <th>Cedula</th>
-            <th>Nota</th>
         </x-slot>
         <tbody>
             @foreach ($clientes as $cliente)
@@ -20,7 +19,6 @@
                     <td>{{ $cliente->direccion }}</td>
                     <td>{{ $cliente->telefono }}</td>
                     <td>{{ $cliente->cedula }}</td>
-                    <td>{{ $cliente->nota }}</td>
                 </tr>
             @endforeach
         </tbody>

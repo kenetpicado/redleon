@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Servicio;
 use App\Services\Servicios;
 use App\Http\Requests\ServicioRequest;
+use App\Http\Requests\ServicioUpdate;
 use App\Models\Cliente;
 use App\Models\Registro;
 use Illuminate\Http\Request;
@@ -20,8 +21,9 @@ class ServicioController extends Controller
     /* Pagar */
     public function edit(Servicio $servicio)
     {
+        $cliente = Cliente::find($servicio->cliente_id, ['nombre']);
         $periodos = (new Servicios)->getPeriodo();
-        return view('servicios.edit', compact('servicio', 'periodos'));
+        return view('servicios.edit', compact('servicio', 'periodos', 'cliente'));
     }
 
     /* Ver detalles */
@@ -44,32 +46,21 @@ class ServicioController extends Controller
     }
 
     /* Guardar pago */
-    public function update(ServicioRequest $request, Servicio $servicio)
+    public function update(ServicioUpdate $request, Servicio $servicio)
     {
-        $servicio->update($request->all());
-        return redirect()->route('servicios.index')->with('success', 'Servicio actualizado correctamente');
-    }
-
-    public function pay(Request $request, Servicio $servicio)
-    {
-        $request->validate([
-            'fecha_pago' => 'required|date',
-            'monto' => 'required|numeric',
-            'periodo' => 'required',
-        ]);
-
-        $servicio->update($request->all());
-
         Registro::create([
-            'message' => $servicio->tipo . ' - ' . $servicio->operador,
+            'message' => 'Se vencio el plan contratado el: ' . $servicio->periodo_fin,
             'monto' => $request->monto,
             'cliente_id' => $servicio->cliente_id,
-            'created_at' => $servicio->fecha_pago,
+            'created_at' => now(),
         ]);
+
+        $servicio->update($request->validated());
 
         return redirect()->route('servicios.recibo', $servicio->id);
     }
 
+    /* Ver recibo */
     public function recibo($servicio_id)
     {
         $servicio = Servicio::recibo($servicio_id);

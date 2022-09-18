@@ -50,24 +50,24 @@
                 <tr>
                     <td>Inicio periodo: </td>
                     <td>
-                        {{ date('d-m-Y', strtotime($servicio->fecha_pago)) }}
+                        {{ date('d-m-Y', strtotime($servicio->periodo_inicio)) }}
                     </td>
                 </tr>
                 <tr>
                     <td>Fin periodo: </td>
                     <td>
-                        {{ date('d-m-Y', strtotime($servicio->proximo_pago)) }}
+                        {{ date('d-m-Y', strtotime($servicio->periodo_fin)) }}
                     </td>
                 </tr>
                 <tr>
                     <td>Cobrador: </td>
                     <td>
-                        {{ $servicio->nombre_cobrador }}
+                        {{ $servicio->nombre_cobrador ?? '-'}}
                     </td>
                 </tr>
                 <tr>
                     <td> <strong>Monto: </strong> </td>
-                    <td class="fw-bolder">$ {{ $servicio->monto }}</td>
+                    <td class="fw-bolder">$ {{ $servicio->monto ?? '-' }}</td>
                 </tr>
             </table>
         </div>

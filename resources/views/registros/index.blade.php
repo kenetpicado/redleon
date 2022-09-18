@@ -6,21 +6,19 @@
     <x-header-0>Registros del cliente</x-header-0>
 
     <x-main>
-
+        <p>
+            Historial de pagos del cliente:
+        </p>
+        <h5 class="fw-bolder">{{ $cliente->nombre }}</h5>
+        <hr>
         <table class="table table-borderless">
-            <thead>
-                <tr>
-                    <td>
-                        A continuacion se muestra el historial de pagos del cliente: {{ $cliente->nombre }}
-                    </td>
-                </tr>
-            </thead>
             <tbody>
                 @forelse ($registros as $registro)
                     <tr>
                         <td>
-                            <strong>{{ $registro->created_at }}:</strong>
-                            Se ha realizado un pago. {{ $registro->message }} por un monto de:
+                            {{ $registro->message }}.
+                            <br>
+                            Nuevo pago realizado el: {{ $registro->created_at }} por la cantidad de
                             <strong>$ {{ $registro->monto }}</strong>
                         </td>
                     </tr>

@@ -28,8 +28,8 @@
                 @endif
             @endif
 
-            <a class="btn btn-secondary my-1" href="{{route('servicios.edit', $servicio->id)}}">Realizar pago</a>
-            <a class="btn btn-secondary my-1" href="{{route('servicios.recibo', $servicio->id)}}">Ver recibo</a>
+            <a class="btn btn-secondary my-1" href="{{ route('servicios.edit', $servicio->id) }}">Realizar pago</a>
+            <a class="btn btn-secondary my-1" href="{{ route('servicios.recibo', $servicio->id) }}">Ver recibo</a>
 
             <table class="table table-borderless" width="100%" cellspacing="0">
                 <th>
@@ -46,13 +46,20 @@
                     <td>{{ $servicio->direccion }}</td>
                 </tr>
                 <tr>
-                    <td>Teléfono:</td>
-                    <td>{{ $servicio->telefono }}</td>
+                    <td>Nota:</td>
+                    <td>{{ $servicio->nota }}</td>
                 </tr>
-                <tr>
-                    <td>Cédula:</td>
-                    <td>{{ $servicio->cedula }}</td>
-                </tr>
+                @admin
+                    <tr>
+                        <td>Teléfono:</td>
+                        <td>{{ $servicio->telefono }}</td>
+                    </tr>
+                    <tr>
+                        <td>Cédula:</td>
+                        <td>{{ $servicio->cedula }}</td>
+                    </tr>
+                @endadmin
+
                 <th>
                     <tr class="text-uppercase small fw-bolder">
                         <td colspan="2">Información del servicio</td>
@@ -64,14 +71,7 @@
                         {{ date('d-m-Y', strtotime($servicio->inicio)) }}
                     </td>
                 </tr>
-                <tr>
-                    <td>Tipo: </td>
-                    <td>{{ $servicio->tipo }}</td>
-                </tr>
-                <tr>
-                    <td>Operador: </td>
-                    <td>{{ $servicio->operador }}</td>
-                </tr>
+
                 <tr>
                     <td>Periodo: </td>
                     <td>{{ $servicio->periodo }}</td>
@@ -91,21 +91,31 @@
                 <tr>
                     <td>Monto</td>
                     <td>
-                        {{ $servicio->monto ?? '-' }}
+                        C$ {{ $servicio->monto ?? '-' }}
                     </td>
                 </tr>
-                <tr>
-                    <td>Equipo: </td>
-                    <td>{{ $servicio->equipo_instalado }}</td>
-                </tr>
-                <tr>
-                    <td>MAC: </td>
-                    <td>{{ $servicio->mac }}</td>
-                </tr>
-                <tr>
-                    <td>Velocidad: </td>
-                    <td>{{ $servicio->velocidad }}</td>
-                </tr>
+                @admin
+                    <tr>
+                        <td>Tipo: </td>
+                        <td>{{ $servicio->tipo }}</td>
+                    </tr>
+                    <tr>
+                        <td>Operador: </td>
+                        <td>{{ $servicio->operador }}</td>
+                    </tr>
+                    <tr>
+                        <td>Equipo: </td>
+                        <td>{{ $servicio->equipo_instalado }}</td>
+                    </tr>
+                    <tr>
+                        <td>MAC: </td>
+                        <td>{{ $servicio->mac }}</td>
+                    </tr>
+                    <tr>
+                        <td>Velocidad: </td>
+                        <td>{{ $servicio->velocidad }}</td>
+                    </tr>
+                @endadmin
             </table>
         </x-main>
     @endsection
