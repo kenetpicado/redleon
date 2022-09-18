@@ -94,6 +94,7 @@
     </div>
     <script src="{{ asset('js/app.js') }}"></script>
     <script type="text/javascript" src="{{ asset('DataTables/datatables.min.js') }}"></script>
+    <script src="{{ asset('js/rl.js') }}"></script>
 
     @if ($errors->any())
         <script>
@@ -102,27 +103,6 @@
             });
         </script>
     @endif
-
-    <script>
-        $(document).ready(function() {
-            $('#dataTable').DataTable({
-                ordering: false,
-                responsive: true,
-                pageLength: 50,
-                bLengthChange: false,
-                language: {
-                    search: "_INPUT_",
-                    searchPlaceholder: "Buscar",
-                    paginate: {
-                        first: "<",
-                        previous: "‹",
-                        next: "›",
-                        last: ">"
-                    }
-                }
-            });
-        })
-    </script>
 </body>
 
 </html>

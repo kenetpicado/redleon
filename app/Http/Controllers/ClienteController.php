@@ -7,8 +7,6 @@ use App\Http\Requests\ClienteUpdate;
 use App\Models\Cliente;
 use App\Models\Cobrador;
 use App\Services\Servicios;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class ClienteController extends Controller
 {

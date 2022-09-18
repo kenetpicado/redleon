@@ -14,26 +14,22 @@ class ServiciosInfo
 
     public function __construct()
     {
-        $servicios = auth()->user()->rol == 'cobrador'
-            ? DB::table('servicios')
-            ->where('clientes.cobrador_id', auth()->user()->sub_id)
-            ->select([
-                'servicios.*',
-            ])
-            ->join('clientes', 'servicios.cliente_id', '=', 'clientes.id')
-            ->get()
-            : DB::table('servicios')->get();
+        $servicios = DB::table('servicios')
+            ->when(auth()->user()->rol == 'cobrador', function ($q) {
+                $q->where('clientes.cobrador_id', auth()->user()->sub_id)
+                    ->join('clientes', 'servicios.cliente_id', '=', 'clientes.id');
+            })
+            ->get(['tipo']);
 
-        $registros = auth()->user()->rol == 'cobrador'
-            ? DB::table('registros')
-            ->where('clientes.cobrador_id', auth()->user()->sub_id)
-            ->where('registros.created_at', '>=', date('Y-m-' . '01'))
-            ->select([
-                'registros.*',
-            ])
-            ->join('clientes', 'registros.cliente_id', '=', 'clientes.id')
-            ->get()
-            : DB::table('registros')->where('created_at', '>=', date('Y-m-' . '01'))->get();
+        $registros = DB::table('registros')
+            ->when(auth()->user()->rol == 'cobrador', function ($q) {
+                $q->where('created_at', date('Y-m-d'))
+                    ->join('clientes', 'registros.cliente_id', '=', 'clientes.id')
+                    ->where('clientes.cobrador_id', auth()->user()->sub_id);
+            }, function ($q) {
+                $q->where('created_at', '>=', date('Y-m-' . '01'));
+            })
+            ->get(['monto']);
 
         $this->total = $servicios->count();
         $this->cable = $servicios->where('tipo', 'CABLE')->count();

@@ -67,7 +67,7 @@
                 </tr>
                 <tr>
                     <td> <strong>Monto: </strong> </td>
-                    <td class="fw-bolder">$ {{ $servicio->monto ?? '-' }}</td>
+                    <td class="fw-bolder">C$ {{ $servicio->monto ?? '-' }}</td>
                 </tr>
             </table>
         </div>

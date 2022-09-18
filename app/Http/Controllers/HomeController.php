@@ -10,9 +10,11 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $clientes = auth()->user()->rol == 'cobrador'
-            ?  DB::table('clientes')->where('cobrador_id', auth()->user()->sub_id)->count()
-            :  DB::table('clientes')->count();
+        $clientes = DB::table('clientes')
+            ->when(auth()->user()->rol == 'cobrador', function ($q) {
+                $q->where('cobrador_id', auth()->user()->sub_id);
+            })
+            ->count();
 
         $servicios = (new ServiciosInfo());
         return view('home', compact('clientes', 'servicios'));

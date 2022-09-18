@@ -12,10 +12,10 @@
             <p>
                 Realizar pago del cliente:
             </p>
-            <h5 class="fw-bolder">{{$cliente->nombre}}</h5>
+            <h5 class="fw-bolder">{{ $cliente->nombre }}</h5>
             <hr>
 
-            <x-input name='periodo_inicio' label="Inicio del servicio" type="date" :val="date('Y-m-d')">
+            <x-input name='periodo_inicio' label="Inicio del servicio" type="date" :val="$servicio->periodo_fin ?? ''">
             </x-input>
 
             <x-select-0 name="periodo" :items="$periodos" :old="$servicio->periodo ?? ''">
@@ -24,7 +24,7 @@
             <x-input name='periodo_fin' label="Fin del servicio" type="date">
             </x-input>
 
-            <x-input name='monto'></x-input>
+            <x-input name='monto' Label="Monto C$"></x-input>
 
             <p class="text-muted">Por favor, revise que la informacion ingresada sea correcta.</p>
 

@@ -12,8 +12,8 @@
                     <tr>
                         <td>
                             <strong>{{ $ingreso->created_at }}:</strong>
-                            {{ $ingreso->nombre }} ha realizado un pago. {{ $ingreso->message }} por un monto de:
-                            <strong>$ {{ $ingreso->monto }}</strong>
+                            {{ $ingreso->nombre }} ha realizado un pago por un monto de:
+                            <strong>C$ {{ $ingreso->monto }}</strong>
                         </td>
                     </tr>
                     </div>

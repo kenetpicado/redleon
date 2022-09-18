@@ -22,16 +22,29 @@
                     <td>
                         @if ($servicio->periodo_fin > date('Y-m-d'))
                             <i class="fas fa-check-circle text-success"></i> Activo
+                            @php
+                                $date2 = new DateTime($servicio->periodo_fin);
+                                $date1 = new DateTime(date('Y-m-d'));
+                                $diff = $date1->diff($date2);
+                                echo '(' . $diff->days . ' dias)';
+                            @endphp
                         @else
                             @if ($servicio->periodo_fin == date('Y-m-d'))
                                 <i class="fas fa-exclamation-circle text-warning"></i> Pagar hoy
                             @else
                                 <i class="fas fa-exclamation-circle text-danger"></i>
                                 Retrasado
+                                @php
+                                $date2 = new DateTime($servicio->periodo_fin);
+                                $date1 = new DateTime(date('Y-m-d'));
+                                $diff = $date1->diff($date2);
+                                echo '(' . $diff->days . ' dias)';
+                            @endphp
                             @endif
                         @endif
                     </td>
-                    <td> <a class="btn btn-sm btn-primary" href="{{ route('servicios.show', $servicio->id) }}">Detalles</a></td>
+                    <td> <a class="btn btn-sm btn-primary" href="{{ route('servicios.show', $servicio->id) }}">Detalles</a>
+                    </td>
                 </tr>
             @endforeach
         </tbody>
