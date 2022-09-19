@@ -6,6 +6,7 @@
     <x-header-0>Ingresos de este mes</x-header-0>
 
     <x-main>
+        <a href="{{ route('facturas') }}" class="btn btn-secondary mb-2" target="_blank">Facturas</a>
         <table class="table table-borderless">
             <tbody>
                 @forelse ($ingresos as $ingreso)

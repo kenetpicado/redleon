@@ -9,6 +9,7 @@ use App\Http\Requests\ServicioUpdate;
 use App\Models\Cliente;
 use App\Models\Registro;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ServicioController extends Controller
 {
@@ -64,6 +65,11 @@ class ServicioController extends Controller
     public function recibo($servicio_id)
     {
         $servicio = Servicio::recibo($servicio_id);
-        return view('servicios.recibo', compact('servicio'));
+        $registro = DB::table('registros')
+            ->where('cliente_id', $servicio->cliente_id)
+            ->latest('id')
+            ->first('id');
+
+        return view('servicios.recibo', compact('servicio', 'registro'));
     }
 }

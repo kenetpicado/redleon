@@ -36,7 +36,11 @@
                     </tr>
                 </th>
                 <tr>
-                    <td width="50%">Cliente:</td>
+                    <td width="50%">Factura:</td>
+                    <td class="fw-bolder">N° {{ str_pad($registro->id ?? 'X', 4, "0", STR_PAD_LEFT)  }}</td>
+                </tr>
+                <tr>
+                    <td>Cliente:</td>
                     <td>{{ $servicio->nombre }}</td>
                 </tr>
                 <tr>
@@ -48,13 +52,13 @@
                     <td>{{ $servicio->operador }}</td>
                 </tr>
                 <tr>
-                    <td>Inicio periodo: </td>
+                    <td>Inicio del servicio: </td>
                     <td>
                         {{ date('d-m-Y', strtotime($servicio->periodo_inicio)) }}
                     </td>
                 </tr>
                 <tr>
-                    <td>Fin periodo: </td>
+                    <td>Fin del servicio: </td>
                     <td>
                         {{ date('d-m-Y', strtotime($servicio->periodo_fin)) }}
                     </td>

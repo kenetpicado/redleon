@@ -70,8 +70,13 @@ class Servicio extends Model
         return DB::table('servicios')
             ->where('servicios.id', $servicio_id)
             ->select([
-                'servicios.*',
+                'servicios.tipo',
+                'servicios.operador',
+                'servicios.monto',
+                'servicios.periodo_inicio',
+                'servicios.periodo_fin',
                 'cobradors.nombre as nombre_cobrador',
+                'clientes.id as cliente_id',
                 'clientes.nombre as nombre',
                 'clientes.direccion as direccion',
                 'clientes.telefono as telefono',

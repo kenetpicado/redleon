@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /* Autenticado  y Admin*/
+
 Route::middleware(['auth', 'admin'])->group(function () {
 
     Route::resource('clientes', ClienteController::class)
@@ -28,6 +29,9 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
     Route::get('ingresos', [IngresoController::class, 'index'])
         ->name('ingresos.index');
+
+    Route::get('facturas', [IngresoController::class, 'facturas'])
+        ->name('facturas');
 });
 
 /* Autenticado */
