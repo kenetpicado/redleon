@@ -58,7 +58,8 @@ class ServicioController extends Controller
 
         $servicio->update($request->validated());
 
-        return redirect()->route('servicios.recibo', $servicio->id);
+        return redirect()->route('servicios.show', $servicio->id)
+            ->with('success', 'Pago realizado correctamente');
     }
 
     /* Ver recibo */

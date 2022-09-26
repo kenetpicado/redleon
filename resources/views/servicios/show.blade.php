@@ -4,19 +4,19 @@
 
 @section('main')
     <x-header-0>Detalles</x-header-2>
-
         <x-main>
+
             @if ($servicio->periodo_fin > date('Y-m-d'))
-                <div class="alert alert-success" role="alert">
+                <div class="alert alert-success mb-0" role="alert">
                     El servicio se encuentra activo.
                 </div>
             @else
                 @if ($servicio->periodo_fin == date('Y-m-d'))
-                    <div class="alert alert-warning" role="alert">
+                    <div class="alert alert-warning mb-0" role="alert">
                         El nuevo pago deberia efectuarse hoy.
                     </div>
                 @else
-                    <div class="alert alert-danger" role="alert">
+                    <div class="alert alert-danger mb-0" role="alert">
                         El nuevo pago se encuentra retrasado.
                         @php
                             $date2 = new DateTime($servicio->periodo_fin);
@@ -27,11 +27,10 @@
                     </div>
                 @endif
             @endif
+            <a class="btn btn-secondary mt-3" href="{{ route('servicios.edit', $servicio->id) }}">Realizar pago</a>
+            <a class="btn btn-secondary mt-3" href="{{ route('servicios.recibo', $servicio->id) }}" target="_blank">Ver recibo</a>
 
-            <a class="btn btn-secondary my-1" href="{{ route('servicios.edit', $servicio->id) }}">Realizar pago</a>
-            <a class="btn btn-secondary my-1" href="{{ route('servicios.recibo', $servicio->id) }}">Ver recibo</a>
-
-            <table class="table table-borderless" width="100%" cellspacing="0">
+            <table class="table table-borderless">
                 <th>
                     <tr class="text-uppercase small fw-bolder">
                         <td colspan="2">Información del Cliente</td>
