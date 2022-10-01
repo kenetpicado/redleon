@@ -118,27 +118,6 @@
                         <div class="d-flex justify-content-between p-md-1">
                             <div class="d-flex flex-row">
                                 <div class="align-self-center">
-                                    <h2 class="h1 mb-0 me-4">{{ $servicios->ingreso }}</h2>
-                                </div>
-                                <div>
-                                    <h4>Ingresos</h4>
-                                    <p class="mb-0">{{ $servicios->mes }}</p>
-                                </div>
-                            </div>
-                            <div class="align-self-center">
-                                <i class="fas fa-dollar-sign text-primary fa-3x"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-12 mb-4">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between p-md-1">
-                            <div class="d-flex flex-row">
-                                <div class="align-self-center">
                                     <h2 class="h1 mb-0 me-4">{{ $servicios->streaming }}</h2>
                                 </div>
                                 <div>
@@ -153,6 +132,71 @@
                     </div>
                 </div>
             </div>
+
+            <div class="col-lg-4 col-md-12 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between p-md-1">
+                            <div class="d-flex flex-row">
+                                <div class="align-self-center">
+                                    <h2 class="h1 mb-0 me-4">{{ $servicios->ingreso }}</h2>
+                                </div>
+                                <div>
+                                    <h4>Ingresos C$</h4>
+                                    <p class="mb-0">{{ $servicios->mes }}</p>
+                                </div>
+                            </div>
+                            <div class="align-self-center">
+                                <i class="fas fa-dollar-sign text-primary fa-3x"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            @if (auth()->user()->rol == 'admin')
+                <div class="col-lg-4 col-md-12 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between p-md-1">
+                                <div class="d-flex flex-row">
+                                    <div class="align-self-center">
+                                        <h2 class="h1 mb-0 me-4">{{ $servicios->gasto }}</h2>
+                                    </div>
+                                    <div>
+                                        <h4>Gastos C$</h4>
+                                        <p class="mb-0">{{ $servicios->mes }}</p>
+                                    </div>
+                                </div>
+                                <div class="align-self-center">
+                                    <i class="fas fa-dollar-sign text-primary fa-3x"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-12 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between p-md-1">
+                                <div class="d-flex flex-row">
+                                    <div class="align-self-center">
+                                        <h2 class="h1 mb-0 me-4">{{ $servicios->ingreso - $servicios->gasto }}</h2>
+                                    </div>
+                                    <div>
+                                        <h4>Ganacia C$</h4>
+                                        <p class="mb-0">{{ $servicios->mes }}</p>
+                                    </div>
+                                </div>
+                                <div class="align-self-center">
+                                    <i class="fas fa-dollar-sign text-primary fa-3x"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endif
         </div>
 
     </div>

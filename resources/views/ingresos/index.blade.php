@@ -3,30 +3,27 @@
 @section('title', 'Ingresos')
 
 @section('main')
-    <x-header-0>Ingresos de este mes</x-header-0>
+    <x-header-0>Ingresos</x-header-0>
 
-    <x-main>
-        <a href="{{ route('facturas') }}" class="btn btn-secondary mb-2" target="_blank">Facturas</a>
-        <table class="table table-borderless">
-            <tbody>
-                @forelse ($ingresos as $ingreso)
-                    <tr>
-                        <td>
-                            <strong>{{ $ingreso->created_at }}:</strong>
-                            {{ $ingreso->nombre }} ha realizado un pago por un monto de:
-                            <strong>C$ {{ $ingreso->monto }}</strong>
-                        </td>
-                    </tr>
-                    </div>
-                @empty
-                    <tr>
-                        <td>
-                            No hay registros
-                        </td>
-                    </tr>
-                @endforelse
-            </tbody>
-        </table>
+    <div class="card-body">
+        <h5>Ingresos totales de {{ $mes }}: C$ {{ $ingresos->sum('monto') }}</h5>
+    </div>
 
-    </x-main>
+    <x-table>
+        <a href="{{ route('facturas') }}" class="btn btn-secondary btn-sm mb-2" target="_blank">Facturas</a>
+        @slot('title')
+            <th>Concepto</th>
+            <th>Monto</th>
+            <th>Fecha</th>
+        @endslot
+        @foreach ($ingresos as $ingreso)
+            <tr>
+                <td>
+                    {{ $ingreso->nombre }} ha realizado un pago.
+                </td>
+                <td>C$ {{ $ingreso->monto }}</td>
+                <td>{{ $ingreso->created_at }}</td>
+            </tr>
+        @endforeach
+    </x-table>
 @endsection

@@ -42,6 +42,7 @@
                         <x-itembar when="clientes" text="Clientes" route="clientes.index"></x-itembar>
                         <x-itembar when="cobradors" text="Cobradores" route="cobradors.index"></x-itembar>
                         <x-itembar when="ingresos" text="Ingresos" route="ingresos.index"></x-itembar>
+                        <x-itembar when="gasto" text="Gastos" route="gastos.index"></x-itembar>
                     @endif
                 </ul>
 

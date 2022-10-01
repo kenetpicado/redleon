@@ -3,27 +3,23 @@
 @section('title', 'Clientes')
 
 @section('main')
-    @if (auth()->user()->rol == 'admin')
-        <x-header-1>TODOS LOS CLIENTES</x-header-1>
+    <x-header-1>TODOS LOS CLIENTES</x-header-1>
 
-        <x-modal title="Agregar - Cliente">
-            <form action="{{ route('clientes.store') }}" method="post">
-                @csrf
-                <div class="modal-body">
-                    <x-input name='nombre'></x-input>
-                    <x-input name='direccion'></x-input>
-                    <x-input name='telefono' type='number'></x-input>
-                    <x-input name='cedula'></x-input>
-                    <x-select-0 name="cobrador_id" :items="$cobradores" text="Asignar cobrador"></x-select-0>
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-secondary float-end">Guardar</button>
-                </div>
-            </form>
-        </x-modal>
-    @else
-        <x-header-0>todos los Clientes</x-header-0>
-    @endif
+    <x-modal title="Agregar - Cliente">
+        <form action="{{ route('clientes.store') }}" method="post">
+            @csrf
+            <div class="modal-body">
+                <x-input name='nombre'></x-input>
+                <x-input name='direccion'></x-input>
+                <x-input name='telefono' type='number'></x-input>
+                <x-input name='cedula'></x-input>
+                <x-select-0 name="cobrador_id" :items="$cobradores" text="Asignar cobrador"></x-select-0>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-secondary float-end">Guardar</button>
+            </div>
+        </form>
+    </x-modal>
 
     <x-table>
         <x-slot name="title">

@@ -1,13 +1,7 @@
 <?php
 
-use App\Http\Controllers\ClienteController;
-use App\Http\Controllers\CobradorController;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\IngresoController;
-use App\Http\Controllers\RegistroController;
-use App\Http\Controllers\ReportesController;
-use App\Http\Controllers\ServicioController;
-use App\Http\Controllers\UserController;
+namespace App\Http\Controllers;
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -32,6 +26,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
     Route::get('facturas', [IngresoController::class, 'facturas'])
         ->name('facturas');
+
+    Route::resource('gastos', GastoController::class);
 });
 
 /* Autenticado */

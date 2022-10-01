@@ -11,6 +11,7 @@ class ServiciosInfo
     public $hfc;
     public $fibra;
     public $ingreso;
+    public $gasto;
 
     public function __construct()
     {
@@ -31,12 +32,18 @@ class ServiciosInfo
             })
             ->get(['monto']);
 
+        $gastos = DB::table('gastos')
+            ->where('created_at', '>=', date('Y-m-' . '01'))
+            ->latest('id')
+            ->get('monto');
+
         $this->total = $servicios->count();
         $this->cable = $servicios->where('tipo', 'CABLE')->count();
         $this->hfc = $servicios->where('tipo', 'INTERNET-HFC')->count();
         $this->fibra = $servicios->where('tipo', 'INTERNET-FIBRA')->count();
         $this->streaming = $servicios->where('tipo', 'STREAMING')->count();
         $this->ingreso = $registros->sum('monto');
+        $this->gasto = $gastos->sum('monto');
         $this->mes = $this->current_month();
     }
 
