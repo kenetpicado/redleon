@@ -23,6 +23,7 @@
         <h5>Gastos totales de {{ $mes }}: C$ {{ $gastos->sum('monto') }}</h5>
     </div>
     <x-table>
+        <a href="{{ route('gastos.reporte') }}" class="btn btn-secondary btn-sm mb-2" target="_blank">Reporte</a>
         @slot('title')
             <th>Descripcion</th>
             <th>Monto</th>

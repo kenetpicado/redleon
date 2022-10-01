@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    <title>{{ config('app.name') }} - Facturas {{date('Y-m-d')}}</title>
+    <title>{{ config('app.name') }} - Gastos {{ date('Y-m-d') }}</title>
     <link rel="icon" type="image/x-icon" href="{{ asset('img/logo.png') }}">
     <style>
         .btn {
@@ -50,24 +50,22 @@
             <h1 class="h4 text-gray-900 mb-4 fw-bolder">{{ config('app.name') }}</h1>
         </div>
         <div class="card-body">
-            <h5 class="card-title mb-3">Facturas de {{ $mes }}</h5>
-            <h5 class="card-title mb-3">Ingresos totales: C$ {{ $registros->sum('monto') }}</h5>
+            <h5 class="card-title mb-3">Gastos de {{ $mes }}</h5>
+            <h5 class="card-title mb-3">Gastos totales: C$ {{ $gastos->sum('monto') }}</h5>
             <table class="table table-borderless table-striped">
                 <thead>
                     <tr>
-                        <th>Factura</th>
-                        <th>Cliente</th>
+                        <th>Descripcion</th>
                         <th>Monto</th>
                         <th>Fecha</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($registros as $registro)
+                    @foreach ($gastos as $gasto)
                         <tr>
-                            <td>N° {{ str_pad($registro->id ?? 'X', 4, '0', STR_PAD_LEFT) }}</td>
-                            <td>{{ $registro->nombre }}</td>
-                            <td>C$ {{ $registro->monto }}</td>
-                            <td>{{ $registro->created_at }}</td>
+                            <td>{{ $gasto->descripcion }}</td>
+                            <td>C$ {{ $gasto->monto }}</td>
+                            <td>{{ $gasto->created_at }}</td>
                         </tr>
                     @endforeach
                 </tbody>

@@ -7,10 +7,11 @@
 
     <div class="card-body">
         <h5>Ingresos totales de {{ $mes }}: C$ {{ $ingresos->sum('monto') }}</h5>
+        <a href="{{ route('facturas') }}" class="btn btn-secondary btn-sm m-1" target="_blank">Facturas</a>
+        <a href="{{ route('balance') }}" class="btn btn-secondary btn-sm m-1" target="_blank">Balance</a>
     </div>
 
     <x-table>
-        <a href="{{ route('facturas') }}" class="btn btn-secondary btn-sm mb-2" target="_blank">Facturas</a>
         @slot('title')
             <th>Concepto</th>
             <th>Monto</th>

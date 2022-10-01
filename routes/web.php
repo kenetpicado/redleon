@@ -28,6 +28,12 @@ Route::middleware(['auth', 'admin'])->group(function () {
         ->name('facturas');
 
     Route::resource('gastos', GastoController::class);
+
+    Route::get('gastos-reporte', [GastoController::class, 'reporte'])
+        ->name('gastos.reporte');
+
+    Route::get('balance', [IngresoController::class, 'balance'])
+        ->name('balance');
 });
 
 /* Autenticado */

@@ -5,19 +5,13 @@ namespace App\Http\Controllers;
 use App\Classes\ServiciosInfo;
 use App\Http\Requests\GastoRequest;
 use App\Models\Gasto;
-use Illuminate\Support\Facades\DB;
 
 class GastoController extends Controller
 {
     public function index()
     {
-        $gastos = DB::table('gastos')
-            ->where('created_at', '>=', date('Y-m-' . '01'))
-            ->latest('id')
-            ->get();
-
+        $gastos = Gasto::onMonth();
         $mes = ServiciosInfo::current_month();
-
         return view('gastos.index', compact('gastos', 'mes'));
     }
 
@@ -36,5 +30,12 @@ class GastoController extends Controller
     {
         $gasto->update($request->validated());
         return redirect()->route('gastos.index')->with('success', 'Gasto editado correctamente');
+    }
+
+    public function reporte()
+    {
+        $gastos = Gasto::onMonth();
+        $mes = ServiciosInfo::current_month();
+        return view('gastos.reporte', compact('gastos', 'mes'));
     }
 }

@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    <title>{{ config('app.name') }} - Facturas {{date('Y-m-d')}}</title>
+    <title>{{ config('app.name') }} - Balance {{ date('Y') }}</title>
     <link rel="icon" type="image/x-icon" href="{{ asset('img/logo.png') }}">
     <style>
         .btn {
@@ -50,24 +50,23 @@
             <h1 class="h4 text-gray-900 mb-4 fw-bolder">{{ config('app.name') }}</h1>
         </div>
         <div class="card-body">
-            <h5 class="card-title mb-3">Facturas de {{ $mes }}</h5>
-            <h5 class="card-title mb-3">Ingresos totales: C$ {{ $registros->sum('monto') }}</h5>
+            <h5 class="card-title mb-3">Balance general año {{date('Y')}}</h5>
             <table class="table table-borderless table-striped">
                 <thead>
                     <tr>
-                        <th>Factura</th>
-                        <th>Cliente</th>
-                        <th>Monto</th>
-                        <th>Fecha</th>
+                        <th>Mes</th>
+                        <th>Ingresos</th>
+                        <th>Gastos</th>
+                        <th>Ganacia</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($registros as $registro)
+                    @foreach ($balances as $balance)
                         <tr>
-                            <td>N° {{ str_pad($registro->id ?? 'X', 4, '0', STR_PAD_LEFT) }}</td>
-                            <td>{{ $registro->nombre }}</td>
-                            <td>C$ {{ $registro->monto }}</td>
-                            <td>{{ $registro->created_at }}</td>
+                            <td>{{ $balance[0] }}</td>
+                            <td>C$ {{ $balance[1] }}</td>
+                            <td>C$ {{ $balance[2] }}</td>
+                            <td>C$ {{ $balance[3] }}</td>
                         </tr>
                     @endforeach
                 </tbody>
