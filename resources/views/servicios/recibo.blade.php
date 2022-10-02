@@ -10,7 +10,6 @@
     <style>
         .page {
             width: 58mm;
-            height: 115mm;
             margin-left: auto;
             margin-right: auto;
             margin-top: 1cm;
@@ -19,7 +18,6 @@
         }
 
         @page {
-            /*size: 58mm 115mm;*/
             margin: 0;
         }
 
@@ -44,63 +42,49 @@
                 </td>
             </tr>
             <tr class="small">
-                <td colspan="2">
-                    Dir. Implagsa 3 C abajo. 1 C al sur.
-                    <br>
+                <td colspan="2" class="text-center fw-bolder">
                     Cel. 88893518
                     <br>
                     RUC: 2811611860004
+                    <br>
+                    Dir. Implagsa 3 C abajo. 1 C al sur.
+                    <br>
                 </td>
+            </tr>
+            <tr>
+                <th colspan="2" class="text-center">RECIBO</th>
             </tr>
             <tr>
                 <td>Factura:</td>
                 <td class="fw-bolder float-end">N° {{ str_pad($registro->id ?? 'X', 4, '0', STR_PAD_LEFT) }}</td>
             </tr>
             <tr>
-                <td>Fecha:</td>
+                <td>Fecha pago:</td>
                 <td class="float-end">{{ date('d-m-y') }}</td>
             </tr>
             <tr>
-                <td colspan="2">
-                    Cliente:
-                    <br>
-                    {{ $servicio->nombre }}
-                </td>
+                <td>Cliente</td>
+                <td>{{ $servicio->nombre }}</td>
             </tr>
             <tr>
-                <td colspan="2">
-                    Tipo:
-                    <br>
-                    {{ $servicio->tipo }}
-                </td>
+                <td>Tipo</td>
+                <td> {{ $servicio->tipo }}</td>
             </tr>
             <tr>
-                <td colspan="2">
-                    Operador:
-                    <br>
-                    {{ $servicio->operador }}
-                </td>
+                <td>Operador</td>
+                <td> {{ $servicio->operador }}</td>
             </tr>
             <tr>
-                <td colspan="2">
-                    Inicio del servicio:
-                    <br>
-                    {{ date('d-m-Y', strtotime($servicio->periodo_inicio)) }}
-                </td>
+                <td>Inicio Servicio</td>
+                <td>{{ date('d-m-Y', strtotime($servicio->periodo_inicio)) }}</td>
             </tr>
             <tr>
-                <td colspan="2">
-                    Fin del servicio:
-                    <br>
-                    {{ date('d-m-Y', strtotime($servicio->periodo_fin)) }}
-                </td>
+                <td>Fin Servicio</td>
+                <td> {{ date('d-m-Y', strtotime($servicio->periodo_fin)) }}</td>
             </tr>
             <tr>
-                <td colspan="2">
-                    Cobrador:
-                    <br>
-                    {{ $servicio->cobrador ?? '-' }}
-                </td>
+                <td>Cobrador</td>
+                <td> {{ $servicio->cobrador ?? '-' }}</td>
             </tr>
             <tr>
                 <td> <strong>Monto: </strong> </td>
